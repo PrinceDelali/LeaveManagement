@@ -66,10 +66,10 @@ const App = () => {
         <Route
           path="/manager-dashboard"
           element={
-            userDetails && userDetails.role === "manager" ? (
+            userDetails ? (
               <ManagerDashboard />
             ) : (
-              <Navigate to="/dashboard" />
+              <Dashboard/>
             )
           }
         />

@@ -4,6 +4,8 @@ import { collection, doc, getDocs, updateDoc } from "firebase/firestore";
 import { Button, Typography } from "@material-tailwind/react";
 import { db } from "../firebase/config"; // Firebase config file
 import { useNavigate } from "react-router-dom"; // Import useNavigate
+import SideBar from "./SideBar";
+import Aside from "./Aside";
 
 const ManagerDashboard = () => {
   const [leaveRequests, setLeaveRequests] = useState([]);
@@ -44,7 +46,12 @@ const ManagerDashboard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 p-10">
+    <div className="grid grid-cols-12">
+      <div className="col-span-3">
+        <SideBar />
+      </div>
+      <div className="col-span-7">
+      <div className="min-h-screen bg-gray-50 p-10">
       <div className="max-w-2xl mx-auto">
         <Typography variant="h4" color="blue-gray" className="text-center mb-8">
           Manage Leave Requests
@@ -120,7 +127,7 @@ const ManagerDashboard = () => {
         <div className="mt-8">
           <Button
             color="blue"
-            onClick={() => navigate("/employee-dashboard")} // Navigate to Employee Dashboard
+            onClick={() => navigate("/dashboard")} // Navigate to Employee Dashboard
             className="w-full"
           >
             Go to Employee Dashboard
@@ -128,6 +135,12 @@ const ManagerDashboard = () => {
         </div>
       </div>
     </div>
+      </div>
+      <div className="col-span-2">
+        <Aside />
+      </div>
+    </div>
+   
   );
 };
 

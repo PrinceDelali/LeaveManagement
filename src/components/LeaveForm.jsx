@@ -3,7 +3,7 @@ import { doc, serverTimestamp, setDoc, onSnapshot } from "firebase/firestore";
 import { useForm } from "react-hook-form";
 import { db } from "../firebase/config";
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate for navigation
+import { Link, useNavigate } from "react-router-dom"; // Import useNavigate for navigation
 
 const LeaveForm = ({ id }) => {
   const { register, reset, handleSubmit } = useForm();
@@ -44,9 +44,7 @@ const LeaveForm = ({ id }) => {
     }
   };
 
-  const handleNavigate = () => {
-    navigate("/manager-dashboard"); // Navigate to the Manager's Dashboard
-  };
+  
 
   return (
     <div className="min-h-screen p-10">
@@ -62,7 +60,7 @@ const LeaveForm = ({ id }) => {
       )}
 
       {/* Real-time status, only shown when status is available */}
-      {leaveStatus && (
+      {leaveStatus  === "accepted" && (
         <div className="mt-4 bg-blue-100 border border-blue-400 text-blue-700 px-4 py-3 rounded">
           <span>Your leave request status: {leaveStatus}</span>
         </div>
@@ -135,14 +133,13 @@ const LeaveForm = ({ id }) => {
       </form>
 
       {/* Button to navigate to the Manager's Dashboard */}
-      <Button
-        className="mt-5 flex justify-center"
+      <Link
+        className="mt-5 flex justify-center bg-green-800"
         fullWidth
-        color="green"
-        onClick={handleNavigate}
+        to="/manager-dashboard"
       >
        Manager Dashboard
-      </Button>
+      </Link>
     </div>
   );
 };
